@@ -9,7 +9,7 @@ import static java.lang.IO.println;
 @Service
 public class OrderConsumer {
 
-    @KafkaListener(topics = "order-updates-topic", groupId = "order-group")
+    @KafkaListener(topics = "order-updates-topic", groupId = "order-group", filter = "shippedFilter")
     public void consume(OrderEvent event) {
         println("Received Update: " + event.orderId() + " is now " + event.status());
 
